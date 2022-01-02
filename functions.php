@@ -1,5 +1,5 @@
 <?php
-// these set up style links and are used on front-page by wp_head.
+// Replace style links on front-page.php  links to wp_head()
   function blog_site_register_styles() {
     
     // Variable to make version dynamic
@@ -20,4 +20,24 @@
 
 
   add_action( 'wp_enqueue_scripts', 'blog_site_register_styles');
+
+  // Replace scripts from front-page.php at wp_footer()
+  // Set to true to have occur in footer.  Default is false and will have files appear in wp_head.
+  function blog_site_register_scripts() {
+
+    $version = wp_get_theme()->get( 'Version' );
+    
+    wp_enqueue_script( 'blog-site-jquery-slim', 'https://code.jquery.com/jquery-3.4.1.slim.min.js', array(),
+      '3.4.1', true );
+    wp_enqueue_script( 'blog-site-popper', 'https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js', array(),
+      '1.16.0', true );
+    wp_enqueue_script( 'blog-site-bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js', array(),
+      '4.4.1', true );
+    wp_enqueue_script( 'blog-site-js-main', get_template_directory_uri(). '/assets/js/main.js', array(),
+      $version, true );
+  
+  }
+
+
+  add_action( 'wp_enqueue_scripts', 'blog_site_register_scripts');
 ?>
