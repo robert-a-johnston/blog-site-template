@@ -6,6 +6,21 @@
 
   add_action( 'after_setup_theme', 'blog_site_theme_support' );
 
+  // Function to add dynamic menu
+  function blog_site_menus() {
+
+    // set menu location for wordpress
+    $locations = array(
+      // name of menus displayed on wordpress admin (create menu)
+      'primary' => "Desktop Primary Left Sidebar",
+      'footer' => "Footer Menu Items"
+    );
+
+    register_nav_menus( $locations );
+  }
+
+  add_action( 'init', 'blog_site_menus');
+
 // Replace style links on front-page.php  links to wp_head()
   function blog_site_register_styles() {
     
