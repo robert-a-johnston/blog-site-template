@@ -2,6 +2,7 @@
   // Function that adds dynamic title tag support by wordpress
   function blog_site_theme_support() {
     add_theme_support('title-tag');
+    add_theme_support('custom-logo');
   }
 
   add_action( 'after_setup_theme', 'blog_site_theme_support' );
